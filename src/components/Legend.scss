@@ -1,0 +1,8 @@
+// src/components/Legend.scss
+@use "../styles/vars" as *;
+
+.legend {
+  position: absolute; z-index: 2; left: 16px; bottom: 28px; width: 250px; padding: 10px 12px; background: $glass; border: 1px solid $line; @include brackets(8px);
+  &__bar { height: 8px; }
+  &__ticks { display: flex; justify-content: space-between; @include tag; margin-top: 6px; }
+}

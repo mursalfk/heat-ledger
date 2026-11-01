@@ -1,0 +1,25 @@
+// src/components/AboutModal.scss
+@use "../styles/vars" as *;
+
+.about {
+  position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.62); display: grid; place-items: center; padding: 16px;
+
+  &__box {
+    position: relative; width: min(560px, 100%); max-height: 90vh; overflow-y: auto; background: $bg; color: $ink; border: 1px solid $accent; padding: 24px 26px; @include brackets(14px);
+    h2 { font-family: $display; font-size: 20px; letter-spacing: 3px; margin: 0 0 10px; text-transform: uppercase; span { color: $accent; } }
+    h3 { @include tag; margin: 18px 0 6px; &::before { content: "// "; color: $accent; } }
+    p { margin: 0; font-size: 12px; line-height: 1.7; }
+    code { color: $accent; }
+  }
+  &__lead { font-size: 13px; color: $ink; }
+  &__x { position: absolute; top: 10px; right: 14px; background: none; border: 0; font-size: 22px; color: $muted; cursor: pointer; &:hover { color: $accent; } }
+
+  &__me {
+    margin-top: 22px; padding-top: 16px; border-top: 1px solid $line; display: grid; gap: 5px;
+    span { @include tag; }
+    b { font-family: $display; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: $accent; }
+    small { color: $muted; font-size: 11px; line-height: 1.5; }
+  }
+  &__links { display: flex; gap: 8px; margin: 6px 0;
+    a { border: 1px solid $line; padding: 5px 10px; color: $ink; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; &:hover { background: $accent; color: $accent-ink; border-color: $accent; } } }
+}

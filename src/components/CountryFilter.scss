@@ -1,0 +1,9 @@
+// src/components/CountryFilter.scss
+@use "../styles/vars" as *;
+
+.country {
+  display: grid; gap: 6px;
+  span { @include tag; &::before { content: "// "; color: $accent; } }
+  select { width: 100%; background: $card; border: 1px solid $line; padding: 8px 10px; font-size: 12px; text-transform: uppercase;
+    &:focus { outline: 1px solid $accent; } }
+}

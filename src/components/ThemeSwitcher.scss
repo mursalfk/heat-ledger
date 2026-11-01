@@ -1,0 +1,9 @@
+// src/components/ThemeSwitcher.scss
+@use "../styles/vars" as *;
+
+.themes {
+  display: flex; border: 1px solid $line;
+  &__btn { flex: 1; background: transparent; border: 0; padding: 6px 8px; cursor: pointer; @include tag; color: $muted;
+    & + & { border-left: 1px solid $line; }
+    &.is-on { background: $accent; color: $accent-ink; font-weight: 700; } }
+}

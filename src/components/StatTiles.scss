@@ -1,0 +1,13 @@
+// src/components/StatTiles.scss
+@use "../styles/vars" as *;
+
+.tiles {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  &__tile {
+    border: 1px solid $line; background: $card; padding: 8px 9px; display: flex; flex-direction: column; gap: 3px; min-width: 0;
+    span { @include tag; font-size: 9px; }
+    b { font-family: $display; font-size: 17px; font-weight: 700; color: $accent; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    small { color: $muted; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    &.is-hot b { color: $hot; }
+  }
+}

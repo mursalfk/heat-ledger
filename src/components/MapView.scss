@@ -1,0 +1,3 @@
+// src/components/MapView.scss
+// maplibre-gl.css sets .maplibregl-map { position: relative }, so out-specify it or the map collapses to 0 height.
+.map-view.maplibregl-map { position: absolute; inset: 0; width: 100%; height: 100%; }

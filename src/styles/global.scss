@@ -1,0 +1,18 @@
+// src/styles/global.scss
+@use "./vars" as *;
+
+[data-theme="phosphor"] {
+  --bg: #050a07; --card: #08120c; --line: #124a2a; --ink: #c9ffe0; --muted: #4d9a6b;
+  --accent: #39ff88; --accent-ink: #04140a; --hot: #ffb000; --glass: #07110b; --grid: #0b2a18;
+}
+[data-theme="daylight"] {
+  --bg: #dfe9f3; --card: #ffffff; --line: #c5d2e0; --ink: #0d1b2a; --muted: #5b6f85;
+  --accent: #ff5a1f; --accent-ink: #ffffff; --hot: #d4380d; --glass: #f8fbfe; --grid: #cfdbe8;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; }
+body { font-family: $mono; font-size: 13px; background: #050a07; }
+button, select, input { font: inherit; color: inherit; border-radius: 0; }
+::selection { background: $accent; color: $accent-ink; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

@@ -1,0 +1,23 @@
+// src/styles/_vars.scss
+$bg: var(--bg);
+$card: var(--card);
+$line: var(--line);
+$ink: var(--ink);
+$muted: var(--muted);
+$accent: var(--accent);
+$accent-ink: var(--accent-ink);
+$hot: var(--hot);
+$glass: var(--glass);
+$display: "Orbitron", "Segoe UI", system-ui, sans-serif;
+$mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+// Corner brackets (top-left and bottom-right) for HUD frames.
+// Parent must be positioned (relative/absolute).
+@mixin brackets($size: 10px) {
+  &::before, &::after { content: ""; position: absolute; width: $size; height: $size; pointer-events: none; }
+  &::before { top: -1px; left: -1px; border-top: 2px solid $accent; border-left: 2px solid $accent; }
+  &::after { bottom: -1px; right: -1px; border-bottom: 2px solid $accent; border-right: 2px solid $accent; }
+}
+
+// Small uppercase mono label.
+@mixin tag { font-family: $mono; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: $muted; }

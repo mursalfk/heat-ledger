@@ -1,0 +1,12 @@
+// src/components/SearchBox.scss
+@use "../styles/vars" as *;
+
+.search {
+  position: relative; display: flex; gap: 4px;
+  input { flex: 1; min-width: 0; background: $card; border: 1px solid $line; padding: 8px 10px; font-size: 12px; &:focus { outline: 1px solid $accent; } &::placeholder { color: $muted; } }
+  > button { background: $accent; color: $accent-ink; border: 0; padding: 0 14px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+  &__list {
+    position: absolute; z-index: 3; top: 100%; left: 0; right: 0; margin: 4px 0 0; padding: 4px; list-style: none; background: $bg; border: 1px solid $accent;
+    li button { width: 100%; text-align: left; background: none; border: 0; padding: 7px 8px; cursor: pointer; font-size: 12px; &:hover { background: $accent; color: $accent-ink; } }
+  }
+}

@@ -1,0 +1,8 @@
+// src/components/Histogram.scss
+@use "../styles/vars" as *;
+
+.hist {
+  h2 { @include tag; margin: 0 0 8px; &::before { content: "// "; color: $accent; } }
+  &__bars { height: 56px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 1px solid $line; i { flex: 1; min-height: 1px; display: block; } }
+  &__axis { display: flex; justify-content: space-between; @include tag; font-size: 9px; margin-top: 4px; }
+}

@@ -1,0 +1,29 @@
+// src/App.scss
+@use "./styles/vars" as *;
+
+.app {
+  position: relative; height: 100vh; overflow: hidden; background: $bg; color: $ink;
+  display: grid; grid-template-columns: minmax(0, 1fr) 420px;
+  @media (max-width: 900px) { grid-template-columns: 1fr; grid-template-rows: 48vh 1fr; }
+
+  &__map { position: relative; min-height: 0; }
+
+  &__dash {
+    background: $glass; border-left: 1px solid $line; padding: 18px; overflow-y: auto; min-height: 0;
+    display: flex; flex-direction: column; gap: 18px;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    @media (max-width: 900px) { border-left: 0; border-top: 1px solid $line; }
+  }
+
+  &__head {
+    display: grid; gap: 10px;
+    h1 { font-family: $display; font-weight: 700; font-size: 18px; letter-spacing: 2px; margin: 0; white-space: nowrap; span { color: $accent; } }
+    p { @include tag; margin: 0; &::before { content: "// "; color: $accent; } }
+    .themes { width: 170px; flex: none; }
+  }
+  &__row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  &__about { background: transparent; border: 1px solid $line; padding: 5px 10px; cursor: pointer; @include tag; color: $ink; &:hover { border-color: $accent; color: $accent; } }
+  &__filters { display: grid; gap: 10px; }
+  &__error { position: absolute; z-index: 6; top: 16px; left: 16px; background: $hot; color: #fff; padding: 8px 12px; font-size: 12px; }
+  &__foot { margin-top: auto; @include tag; line-height: 1.8; font-size: 9px; letter-spacing: 1px; a { color: $accent; text-decoration: none; &:hover { text-decoration: underline; } } }
+}
