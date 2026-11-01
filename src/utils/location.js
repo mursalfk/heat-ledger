@@ -15,23 +15,26 @@ export const getMapStyle = (scheme, forceOsm = false) =>
   hasLocationKey && !forceOsm
     ? `https://maps.geo.${REGION}.amazonaws.com/v2/styles/Standard/descriptor?color-scheme=${scheme === "dark" ? "Dark" : "Light"}&key=${KEY}`
     : {
-        version: 8,
-        sources: { osm: { type: "raster", tileSize: 256, attribution: "© OpenStreetMap contributors", tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"] } },
-        layers: [{ id: "osm", type: "raster", source: "osm", paint: OSM_PAINT[scheme] }],
-      };
+      version: 8,
+      sources: { osm: { type: "raster", tileSize: 256, attribution: "© OpenStreetMap contributors", tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"] } },
+      layers: [{ id: "osm", type: "raster", source: "osm", paint: OSM_PAINT[scheme] }],
+    };
 
+// Returns { results: [{ title, lng, lat }], error: string | "" }.
+// SearchText needs a location bias or filter; a world bounding box means "search everywhere".
 export async function geocode(text) {
-  if (!hasLocationKey || !text.trim()) return [];
-  const res = await fetch(`https://places.geo.${REGION}.amazonaws.com/v2/search-text?key=${KEY}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ QueryText: text, MaxResults: 5 }),
-  });
-  if (!res.ok) return [];
-  const json = await res.json();
-  return (json.ResultItems || []).map((r) => ({
-    title: r.Title,
-    lng: r.Position[0],
-    lat: r.Position[1],
-  }));
+  if (!hasLocationKey || !text.trim()) return { results: [], error: "" };
+  try {
+    const res = await fetch(`https://places.geo.${REGION}.amazonaws.com/v2/search-text?key=${KEY}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ QueryText: text.trim(), MaxResults: 5, Filter: { BoundingBox: [-180, -85, 180, 85] } }),
+    });
+    if (!res.ok) return { results: [], error: `Search failed (HTTP ${res.status})` };
+    const json = await res.json();
+    const results = (json.ResultItems || []).map((r) => ({ title: r.Title, lng: r.Position[0], lat: r.Position[1] }));
+    return { results, error: results.length ? "" : "No matches" };
+  } catch {
+    return { results: [], error: "Search failed (network)" };
+  }
 }
